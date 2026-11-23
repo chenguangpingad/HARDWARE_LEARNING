@@ -30,7 +30,7 @@ ADC 最常见的方式是**逐次逼近（SAR）**。以 TI 的 ADS1115（16 位
 ADC 的量化单位（LSB）为：
 
 $$
-\text{LSB} = \frac{V_{ref}}{2^N} \tag{3.1}
+\text{LSB} = \frac{V_{ref}}{2^N} \qquad (3.1)
 $$
 
 其中 $V_{ref}$ 为参考电压，$N$ 为位数。位数越高、参考电压越小，分辨率越高。
