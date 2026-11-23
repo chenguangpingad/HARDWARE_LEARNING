@@ -140,7 +140,7 @@ $$
 $$
 
 - **C<sub>iss</sub> 大 → V<sub>GS</sub> 上升慢 → 开关时间长**
-- 开关时间大致与 `C<sub>iss</sub> · ΔV<sub>GS</sub> / I<sub>g</sub>` 成正比
+- 开关时间大致与 C<sub>iss</sub> · ΔV<sub>GS</sub> / I<sub>g</sub> 成正比
 - 所以 **C<sub>iss</sub> 决定"开关有多快"，Q<sub>g</sub> 决定"驱动要花多少电荷/多少驱动损耗"**
 
 ## 5.5 不同工况下看重哪些参数
