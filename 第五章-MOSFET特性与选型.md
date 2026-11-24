@@ -144,13 +144,13 @@
 2. **Q<sub>gd</sub> 段（米勒平台）**：V<sub>GS</sub> 基本不变，V<sub>DS</sub> 快速变化，**栅极电流全部给 C<sub>gd</sub> 充放电**
 3. **平台之后**：V<sub>DS</sub> 已接近导通，继续给 C<sub>gs</sub> 充电到最终驱动电压
 
-### 5.3.2 米勒平台怎么产生
+### 5.3.2 米勒平台的形成机理
 
 - 当 V<sub>GS</sub> 升到"能让负载电流流过"的电压时，V<sub>DS</sub> 开始快速下降
 - V<sub>DS</sub> 下降 → C<sub>gd</sub> 两端电压变化 → 需要大量电荷
 - **栅极电流被 C<sub>gd</sub> "吃掉"** → V<sub>GS</sub> 停住不动 → 平台
 
-### 5.3.3 Qgd 怎么影响
+### 5.3.3 Qgd 的影响
 
 - **Q<sub>gd</sub> 大 → 平台越长 → V<sub>DS</sub> 变化越慢 → 开关越慢 → 开关损耗越大**
 - 同时，Q<sub>gd</sub> 大也意味着 C<sub>gd</sub>（C<sub>rss</sub>）大 → **米勒耦合强 → 更容易振荡、对管更易误导通**
@@ -294,7 +294,7 @@ $$
 
 （实际还要算 C<sub>oss</sub>、体二极管、死区损耗，见 5.9。）
 
-## 5.7 SOA 曲线怎么读（深入）
+## 5.7 SOA 曲线的解读
 
 SOA（Safe Operating Area）是 **I<sub>D</sub>-V<sub>DS</sub> 平面上的允许工作区域**，由 5 条边界围成：
 
