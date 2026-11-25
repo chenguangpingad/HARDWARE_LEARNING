@@ -128,7 +128,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `rps` | 替换焊盘（replace padstack）|
 | `sar` / `uar` | 设置 / 取消自动漫游 |
 | `unplrp` | 报告未放置元件 |
-| `reopen` / `revert` | 重新打开设计 |
+| `reopen` / `revert` | ~~重新打开设计~~（已注释：`$module` 启动时未定义会报错）|
 | `cdnshelp` | Cadence 帮助 |
 
 ## 四、只读内置项（无法覆盖）
@@ -169,6 +169,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 按键无反应 | env 未加载 | 重启 Allegro；检查 `HOME` 路径 |
 | 提示 command not found | 命令名拼错 | 核对命令名 |
 | 启动异常 | env 语法错误 | 用备份还原，逐行排查 |
+| 启动报 `Parse error ... Variable not defined` | env 里有**未定义变量**（如 `$module`）| 注释掉该行（如 `reopen`/`revert`），或把变量换成固定值 |
 | 中文注释乱码 | env 编码问题 | 注释用**英文**（纯 ASCII）|
 | 快捷键冲突 | 与内置只读项冲突 | 只读项无法覆盖（见第四节）|
 | 空格键无效 | 写法不对 | 必须写成 `funckey " " ...`（引号内一个空格）|
