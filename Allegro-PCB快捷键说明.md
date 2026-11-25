@@ -2,6 +2,7 @@
 
 > 适用：Cadence Allegro PCB Editor 17.4（Windows）
 > 配置文件：`%HOME%\pcbenv\env`（本机：`C:\Users\gpchen\AppData\Roaming\SPB_Data\pcbenv\env`）
+> 本配置**不依赖任何第三方 Skill 包**，全部为标准 Allegro 命令。
 
 ## 一、快捷键原理
 
@@ -29,35 +30,15 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 ## 三、完整快捷键表
 
-### 1. 单键（最常用）
-
-| 键 | 功能 | 命令 |
-| --- | --- | --- |
-| `0` | 取消元件飞线 | unrats component |
-| `1` | 删除 | delete |
-| `3` | 旋转 | rotate |
-| `4` | 自旋 | spin |
-| `6` | 取消网络飞线 | unrats net |
-| `7` | 显示属性 | show element |
-| `8` | 交换元件 | swap components |
-| `9` | 状态 | status |
-| `A` | 画线（切割线）| add line |
-| `B` | DB Doctor | dbdoctor |
-| `C` | 铜皮挖空复制 | shape void copy |
-| `D` | 差分对设置 | diff pairs |
-| `E` | 约束管理器 | cmgr |
-| `F` | 创建 Fanout | create fanout |
-| `+` / `-` | 切换 subclass | subclass -+ / -- |
-| `,` / `.` | 下一层 / 上一层 | layer down / layer up |
-
-### 2. F 功能键
+### 1. 功能键（F2~F12）
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
 | `Esc` | 取消当前命令 | cancel |
 | `F1` | 帮助 | help |
-| `F2` | 移动 | move |
-| `F4` | 网络排程 | net schedule |
+| `F2` | **全图显示** | zoom fit |
+| `F3` | **布线** | add connect |
+| `F4` | 显示属性 | show element |
 | `F5` | 重绘 | redraw |
 | `F6` | 完成 | done |
 | `F7` | 下一个 | next |
@@ -65,9 +46,9 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `F9` | 取消 | cancel |
 | `F10` | 网格开关 | grid toggle |
 | `F11` | 放大 | zoom in |
-| `F12` | 切换铜皮显示 + 重绘 | settoggle no_etch_shape_display;redraw |
+| `F12` | 缩小 | zoom out |
 
-### 3. Ctrl 组合
+### 2. Ctrl 组合
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
@@ -81,10 +62,12 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `Ctrl+Shift+F5` | 状态 | status |
 | `Ctrl+B` | 切换推挤模式 | bubset |
 | `Ctrl+D` | 删除 | delete |
+| `Ctrl+N` | 新建 | new |
+| `Ctrl+O` | 打开 | open |
 | `Ctrl+Shift+B` | 切换平滑模式 | smoothset |
 | `Ctrl+Y` | 重做 | redo |
 
-### 4. Shift 组合
+### 3. Shift 组合
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
@@ -101,15 +84,17 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `Shift+F11` | 上一次视图 | zoom previous |
 | `Shift+F12` | 全图 | zoom world |
 
-### 5. 方向键 / 翻页
+### 4. 方向键 / 翻页 / 符号
 
-| 键 | 功能 |
-| --- | --- |
-| `↑ / ↓ / ← / →` | 视图漫游（roam）|
-| `PageUp` | 上一层（layer up）|
-| `PageDown` | 下一层（layer down）|
+| 键 | 功能 | 命令 |
+| --- | --- | --- |
+| `↑ / ↓ / ← / →` | 视图漫游 | roam x/y $roamInc |
+| `PageUp` | 上一层 | layer up |
+| `PageDown` | 下一层 | layer down |
+| `+` | 切换 subclass（-+）| subclass -+ |
+| `−` | 切换 subclass（--）| subclass -- |
 
-### 6. 字母别名（直接输入）
+### 5. 字母别名（命令窗口直接输入）
 
 | 别名 | 功能 |
 | --- | --- |
@@ -128,26 +113,20 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `reopen` / `revert` | 重新打开设计 |
 | `cdnshelp` | Cadence 帮助 |
 
-## 四、Skill 依赖项（已注释）
+## 四、只读内置项（无法覆盖）
 
-以下快捷键来自第三方 Skill 包（Jun 工具包 / FP 工具包），本机**未安装**，已在 env 中注释，替换为等价的 Allegro 标准命令：
+以下快捷键由 Allegro 内置且**只读**，env 中无法修改：
 
-| 键 | 原 Skill 命令 | 已替换为 |
-| --- | --- | --- |
-| `Esc` | FP_QuickView_AutoHide | `cancel` |
-| `,` | Jun_LayerEtch Down | `layer down` |
-| `.` | Jun_LayerEtch Up | `layer up` |
-| `A` | fp_cutcline | `add line` |
-| `F2` | Jun_movecomps | `move` |
-| `G` | skill Jun_GridTool | 注释（无等价）|
-| `2` / `5` | skill Jun_GridTool | 注释 |
-| `G25` / `G40` / `G50` | skill Jun_GridTool | 注释 |
-| `F3` | fp_aligntest | 注释 |
-| `Ctrl+F` | FP_RUN | 注释 |
-| `Ctrl+N` / `new` | FP_New | 注释 |
-| `Ctrl+O` / `open` | FP_Open | 注释 |
+| 键 | 功能 |
+| --- | --- |
+| `Ctrl+S` | 保存（save）|
+| `Ctrl+Z` | 撤销（undo）|
+| `Tab` | 切换（tab）|
+| `C` | ctab |
+| `C+S` | sctab |
+| `S` | stab |
 
-**启用方法**：装好 Skill 包后，把 env 里 `# ---------- SKILL-dependent entries` 下面的注释去掉即可。
+> 这些在 env 中以注释形式保留，仅作说明。
 
 ## 五、修改方法
 
@@ -166,10 +145,10 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 问题 | 原因 | 解决 |
 | --- | --- | --- |
 | 按键无反应 | env 未加载 | 重启 Allegro；检查 `HOME` 路径 |
-| 提示 command not found | 命令名拼错或 Skill 未装 | 核对命令；安装 Skill 或注释该行 |
+| 提示 command not found | 命令名拼错 | 核对命令名 |
 | 启动异常 | env 语法错误 | 用备份还原，逐行排查 |
 | 中文注释乱码 | env 编码问题 | 注释用**英文**（纯 ASCII）|
-| 快捷键冲突 | 与内置只读项冲突 | 只读项（`~S`、`~Z`、`\t`、`C`、`CS`、`S`）无法覆盖 |
+| 快捷键冲突 | 与内置只读项冲突 | 只读项无法覆盖（见第四节）|
 
 ## 七、关键命令速查（env 用）
 
@@ -191,6 +170,18 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 全图 | `zoom fit` |
 | 框选 | `zoom window` |
 
+## 八、与上一版的差异
+
+| 项 | 上一版 | 本版 |
+| --- | --- | --- |
+| F2 | move | **zoom fit** |
+| F3 | （Skill）| **add connect** |
+| F4 | net schedule | **show element** |
+| F5~F12 | （部分 Skill）| 全部标准命令 |
+| `Ctrl+N` / `Ctrl+O` | （Skill）| **new / open** |
+| Skill 依赖 | 12 项 | **0 项** |
+| `funckey Up` 笔误 | `-$roamInc1` | 已修正为 `-$roamInc` |
+
 ---
 
-*本文件对应 env 版本：2026-11-25（方案 A：Skill 项已注释替换）*
+*本文件对应 env 版本：2026-11-25（纯标准命令版，无 Skill 依赖）*
