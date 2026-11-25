@@ -2,55 +2,35 @@
 
 > 适用：Cadence Allegro PCB Editor 17.4（Windows）
 > 配置文件：`%HOME%\pcbenv\env`（本机：`C:\Users\gpchen\AppData\Roaming\SPB_Data\pcbenv\env`）
-> 本配置**不依赖任何第三方 Skill 包**，全部为标准 Allegro 命令。
 
 ## 一、快捷键原理
 
-Allegro 的快捷键由 `env` 文件里的两类命令定义：
-
 | 命令 | 用途 | 例子 |
 | --- | --- | --- |
-| `alias` | Ctrl 组合键 / 字母键 / 特殊键 | `alias ~R 'add connect'` |
-| `funckey` | F1~F12 / 方向键 / 单字符键 | `funckey F2 'add connect'` |
+| `alias` | Ctrl 组合键 / 功能键 / 特殊键 | `alias ~D delete` |
+| `funckey` | 单字符键 / 功能键 / 方向键 | `funckey r add connect` |
 
-- `~` 表示 **Ctrl**（如 `~R` = Ctrl+R）
+- `~` 表示 **Ctrl**（如 `~D` = Ctrl+D）
 - 命令含空格时用**单引号**括起
-- 字母键用 `alias`（如 `alias R spin`）；组合键用 `~` 前缀（如 `~D` = Ctrl+D）
-- 修改后**重启 Allegro** 生效
+- 修改后**必须完全退出 Allegro 再重开**才生效
 
-## 二、文件位置
+## 二、文件路径
 
-| 系统 | 路径 |
-| --- | --- |
-| Windows | `%HOME%\pcbenv\env` |
-| Linux | `$HOME/pcbenv/env` |
+```
+C:\Users\gpchen\AppData\Roaming\SPB_Data\pcbenv\env
+```
 
-确认 `HOME`：Windows 命令行 `echo %HOME%`。
+快速打开：`Win+R` → `notepad %HOME%\pcbenv\env`
 
-> **注意**：env 里 `### User Preferences section` 之后是 Allegro 自动生成区（库路径等），**自定义快捷键要写在它之前**。
+> 自定义内容必须写在 `### User Preferences section` **之前**。
 
-## 三、完整快捷键表
+## 三、快捷键总表
 
-### 1. 高频操作（重点）
+### 1. 功能键 alias（F2~F12）
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
-| **R** | **旋转** | spin |
-| **Ctrl+W** | **布线** | add connect |
-| **Ctrl+E** | **铺铜** | shape add |
-| **N** | **打过孔** | add via |
-| **V** | **选择铜皮/挖空** | shape select |
-| **Ctrl+D** | **删除** | delete |
-| **F2** | 全图 | zoom fit |
-| **F3** | 布线（备用）| add connect |
-
-### 2. 功能键（F2~F12）
-
-| 键 | 功能 | 命令 |
-| --- | --- | --- |
-| `Esc` | 取消当前命令 | cancel |
-| `F1` | 帮助 | help |
-| `F2` | 全图显示 | zoom fit |
+| `F2` | 全图 | zoom fit |
 | `F3` | 布线 | add connect |
 | `F4` | 显示属性 | show element |
 | `F5` | 重绘 | redraw |
@@ -62,32 +42,10 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `F11` | 放大 | zoom in |
 | `F12` | 缩小 | zoom out |
 
-### 3. Ctrl 组合
+### 2. Shift + 功能键
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
-| `Ctrl+↑` | 按格点上移 | ipick_to_gridunit 0 +1 |
-| `Ctrl+↓` | 按格点下移 | ipick_to_gridunit 0 -1 |
-| `Ctrl+←` | 按格点左移 | ipick_to_gridunit -1 |
-| `Ctrl+→` | 按格点右移 | ipick_to_gridunit +1 |
-| `Ctrl+W` | **布线** | add connect |
-| `Ctrl+E` | **铺铜** | shape add |
-| `Ctrl+D` | 删除 | delete |
-| `Ctrl+N` | 新建 | new |
-| `Ctrl+O` | 打开 | open |
-| `Ctrl+B` | 切换推挤模式 | bubset |
-| `Ctrl+Shift+B` | 切换平滑模式 | smoothset |
-| `Ctrl+F2` | 下一个 | next |
-| `Ctrl+F5` | 颜色 | color192 |
-| `Ctrl+F6` | 层优先级 | layer priority |
-| `Ctrl+Shift+F5` | 状态 | status |
-| `Ctrl+Y` | 重做 | redo |
-
-### 4. Shift 组合
-
-| 键 | 功能 | 命令 |
-| --- | --- | --- |
-| `Shift+↑/↓/←/→` | 移动 + 按格点微调 | move; ipick_to_gridunit |
 | `Shift+F2` | 属性编辑 | property edit |
 | `Shift+F3` | 推挤 | slide |
 | `Shift+F4` | 测量 | show measure |
@@ -100,81 +58,124 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `Shift+F11` | 上一次视图 | zoom previous |
 | `Shift+F12` | 全图 | zoom world |
 
-### 5. 方向键 / 翻页 / 符号
+### 3. Ctrl 组合
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
-| `↑ / ↓ / ← / →` | 视图漫游 | roam x/y $roamInc |
-| `PageUp` | 上一层 | layer up |
-| `PageDown` | 下一层 | layer down |
-| `+` | 切换 subclass（-+）| subclass -+ |
-| `−` | 切换 subclass（--）| subclass -- |
+| `Ctrl+N` | 新建 | new |
+| `Ctrl+O` | 打开 | open |
+| `Ctrl+S` | 保存 | save |
+| `Ctrl+D` | 删除 | delete |
+| `Ctrl+Z` | 撤销 | undo |
+| `Ctrl+Y` | 重做 | redo |
+| `Ctrl+F2` | 下一个 | next |
+| `Ctrl+F5` | 颜色 | color192 |
+| `Ctrl+F6` | 层优先级 | layer priority |
+| `Ctrl+Shift+F5` | 状态 | status |
 
-### 6. 字母别名（命令窗口直接输入）
+### 4. 单字符键（funckey）
 
-| 别名 | 功能 |
-| --- | --- |
-| `N` | **打过孔（add via）** |
-| `V` | **选择铜皮/挖空（shape select）** |
-| `x` / `y` | pick 选取 |
-| `window` | 框选缩放 |
-| `zc` | 中心缩放 |
-| `ix` / `iy` | ipick 按格点选取 |
-| `pickx` / `picky` | pick |
-| `hilite` / `dehilite` | 高亮 / 取消高亮 |
-| `bubset` | 推挤模式循环 |
-| `smoothset` | 平滑模式循环 |
-| `edps` | 焊盘编辑（padedit）|
-| `rps` | 替换焊盘（replace padstack）|
-| `sar` / `uar` | 设置 / 取消自动漫游 |
-| `unplrp` | 报告未放置元件 |
-| `reopen` / `revert` | ~~重新打开设计~~（已注释：`$module` 启动时未定义会报错）|
-| `cdnshelp` | Cadence 帮助 |
+| 键 | 功能 | 命令 | 备注 |
+| --- | --- | --- | --- |
+| `a` | 推挤 | slide | |
+| `A` | 切割线 | fp_cutcline | ⚠ 依赖 Skill |
+| `b` | 平滑 | custom smooth | 覆盖了前面的 `b opps` |
+| `B` | DB Doctor | dbdoctor | |
+| `c` | 复制 | copy | |
+| `C` | 铜皮挖空复制 | shape void copy | |
+| `d` | 完成 | done | |
+| `D` | 差分对设置 | diff pairs | |
+| `e` | 移动 | move | |
+| `E` | 约束管理器 | cmgr | |
+| `f` | 铺铜 | shape add | |
+| `F` | 创建 Fanout | create fanout | |
+| `g` | 编辑铜皮边界 | shape edit boundary | |
+| `h` | 分配颜色 | assign color | |
+| `H` | 过孔中心等长 | x_eq_cline | ⚠ 可能依赖 Skill |
+| `I` | 删除孤岛 | island_delete | ⚠ 可能依赖 Skill |
+| `j` | 取消高亮 | dehilight | |
+| `k` | 颜色 | color | |
+| `m` | 测量 | show measure | |
+| `M` | 铜皮合并 | shape merge shapes | |
+| `N` | 下一个 | next | |
+| `n` | 角度 45° | angle 45 | |
+| `o` | 删除铜皮 | shap delete（笔误）| ⚠ 应为 `shape delete` |
+| `p` | 交换引脚 | swap pins | |
+| `q` | 切换 | toggle | |
+| `r` | 布线 | add connect | |
+| `R` | 画线 | add line | |
+| `s` | 网络飞线 | rats net | |
+| `S` | （空）| — | ⚠ 未定义命令 |
+| `t` | 蛇形/等长 | delay tune | |
+| `T` | 加文字 | add text | |
+| `u` | 镜像 | mirror | |
+| `v` | 选铜片 | shape select | |
+| `w` | 元件飞线 | rats component | |
+| `y` | 相位调谐 | phase tune | 覆盖了前面的 `y shape void polygon` |
+| `Y` | 层优先级 | layer priority | |
+| `z` | 更改 | change | |
+| `Z` | 铜皮类型转换 | shape change type | |
+| `home` | 图纸信息 | summary drawing report | |
 
-## 四、只读内置项（无法覆盖）
+### 5. 数字键
 
-以下快捷键由 Allegro 内置且**只读**，env 中无法修改：
+| 键 | 功能 | 命令 |
+| --- | --- | --- |
+| `0` | 取消元件飞线 | unrats component |
+| `1` | 删除 | delete |
+| `2` | 元件飞线 | rats component |
+| `3` | 旋转（文字）| rotate |
+| `4` | 旋转（元件）| spin |
+| `5` | 网络飞线 | rats net |
+| `6` | 取消网络飞线 | unrats net |
+| `7` | 显示属性 | show element |
+| `8` | 交换元件 | swap components |
+| `9` | 状态 | status |
 
-| 键 | 功能 |
-| --- | --- |
-| `Ctrl+S` | 保存（save）|
-| `Ctrl+Z` | 撤销（undo）|
-| `Tab` | 切换（tab）|
-| `C` | ctab |
-| `C+S` | sctab |
-| `S` | stab |
+### 6. 其它
 
-> 这些在 env 中以注释形式保留，仅作说明。
+| 键 | 功能 | 命令 |
+| --- | --- | --- |
+| `+` / `-` | 切换 subclass | subclass -+ / -- |
+| `F12` | 切换铜皮显示 + 重绘 | settoggle no_etch_shape_display;redraw |
+
+## 四、⚠ 配置里的冲突与笔误
+
+当前 env 有下面这些问题，会让某些键**互相覆盖**或**失效**，建议修正：
+
+| 问题 | 位置 | 说明 | 建议 |
+| --- | --- | --- | --- |
+| **F3 冲突** | `alias F3 add connect` + `funckey F3 fp_aligntest` | F3 定义了两次 | 删掉其中一条 |
+| **F4 冲突** | `alias F4 show element` + `funckey F4 net schedule` | F4 定义了两次 | 删掉其中一条 |
+| **F12 冲突** | `alias F12 zoom out` + `funckey F12 settoggle...` | F12 定义了两次 | 保留一个 |
+| **b 冲突** | `funckey b opps` + `funckey b custom smooth` | 后者覆盖前者 | 删掉 `b opps` |
+| **y 冲突** | `funckey y shape void polygon` + `funckey y phase tune` | 后者覆盖前者 | 删掉前者 |
+| **笔误 1** | `funckey b opps` | 应为 `oops` | 改成 `oops` |
+| **笔误 2** | `funckey o shap delete` | 应为 `shape delete` | 加个 e |
+| **空命令** | `funckey S` | 没有命令，无效 | 删掉或补命令 |
+| **重复行** | `funckey + subclass -+` / `- subclass --` | 各出现两次 | 删掉重复 |
+| **只读项** | `alias ~S save` / `alias ~Z undo` | 内置只读，重定义无效 | 可保留（无害）|
+| **Skill 依赖** | `A`、`F3`(funckey)、`H`、`I` | 可能依赖第三方 Skill | 装了才有用 |
 
 ## 五、修改方法
 
 1. **备份**：`copy env env.bak`
-2. 用**记事本**打开 `%HOME%\pcbenv\env`
-3. 在 `### User Preferences section` **之前**追加，例如：
-   ```
-   alias R     spin
-   alias ~D    delete
-   alias ~W    add connect
-   alias ~E    shape add
-   alias N     add via
-   alias V     shape select
-   ```
-4. 保存，**重启 Allegro**
-5. 在命令窗口输入 `alias` 验证是否加载
+2. `Win+R` → `notepad %HOME%\pcbenv\env`
+3. 在 `### User Preferences section` **之前**修改
+4. 保存，**完全退出 Allegro 再重开**
+5. 命令窗口输入 `alias` 验证
 
 ## 六、常见问题
 
 | 问题 | 原因 | 解决 |
 | --- | --- | --- |
-| 按键无反应 | env 未加载 | 重启 Allegro；检查 `HOME` 路径 |
-| 提示 command not found | 命令名拼错 | 核对命令名 |
-| 启动异常 | env 语法错误 | 用备份还原，逐行排查 |
-| 启动报 `Parse error ... Variable not defined` | env 里有**未定义变量**（如 `$module`）| 注释掉该行（如 `reopen`/`revert`），或把变量换成固定值 |
-| 中文注释乱码 | env 编码问题 | 注释用**英文**（纯 ASCII）|
-| 快捷键冲突 | 与内置只读项冲突 | 只读项无法覆盖（见第四节）|
-| 空格/Delete 键无效 | 部分键盘布局或版本不认这类键 | 改用字母键：`alias R spin`、`alias ~D delete` |
+| 按键无反应 | env 未加载 / 未重启 | 完全退出再重开 Allegro |
+| 启动报 `Parse error ... Variable not defined` | 有未定义变量（如 `$module`）| 注释掉该行 |
+| 提示 command not found | 命令名拼错或缺 Skill | 核对命令；装 Skill 或注释 |
+| 单字符键无效 | 光标在命令窗口/Find 面板 | 点一下画布再按 |
+| 功能键冲突 | 同一键被 alias 和 funckey 各定义一次 | 见第四节 |
 
-## 七、关键命令速查（env 用）
+## 七、常用命令速查
 
 | 功能 | 命令 |
 | --- | --- |
@@ -182,32 +183,18 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 推挤 | `slide` |
 | 蛇形/等长 | `delay tune` |
 | 过孔 | `add via` |
-| 旋转 | `spin` |
+| 旋转（元件）| `spin` |
+| 旋转（文字）| `rotate` |
 | 铺铜 | `shape add` |
-| 选择铜皮 | `shape select` |
+| 选铜皮 | `shape select` |
 | 删除 | `delete` |
-| 自动布线 | `auto_route` |
-| 自动连接 | `auto_connect` |
-| 移动/复制 | `move` / `copy` |
 | 换层 | `layer up` / `layer down` |
 | 差分对设置 | `diff pairs` |
 | Fanout | `create fanout` |
 | 约束管理器 | `cmgr` |
 | DRC | `check` |
 | 全图 | `zoom fit` |
-| 框选 | `zoom window` |
-
-## 八、本版重点改动
-
-| 操作 | 旧 | 新 |
-| --- | --- | --- |
-| 旋转 | 无 | **R** |
-| 布线 | F3 | **Ctrl+W**（F3 保留）|
-| 铺铜 | 无 | **Ctrl+E** |
-| 过孔 | 无 | **N** |
-| 选择铜皮 | 无 | **V**（shape select）|
-| 删除 | Delete | **Ctrl+D** |
 
 ---
 
-*本文件对应 env 版本：2026-11-25（纯标准命令版 + 6 项自定义快捷键）*
+*本文件对应当前 env（132 行，2026-11-25）*
