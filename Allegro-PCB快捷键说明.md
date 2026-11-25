@@ -15,6 +15,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 - `~` 表示 **Ctrl**（如 `~R` = Ctrl+R）
 - 命令含空格时用**单引号**括起
+- **空格键**写成 `funckey " "`（Cadence 官方示例写法）
 - 修改后**重启 Allegro** 生效
 
 ## 二、文件位置
@@ -30,14 +31,27 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 ## 三、完整快捷键表
 
-### 1. 功能键（F2~F12）
+### 1. 高频操作（重点）
+
+| 键 | 功能 | 命令 |
+| --- | --- | --- |
+| **空格** | **旋转** | rotate |
+| **Ctrl+W** | **布线** | add connect |
+| **Ctrl+E** | **铺铜** | shape add |
+| **N** | **打过孔** | add via |
+| **V** | **选择铜皮/挖空** | shape select |
+| **Delete** | **删除** | delete |
+| **F2** | 全图 | zoom fit |
+| **F3** | 布线（备用）| add connect |
+
+### 2. 功能键（F2~F12）
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
 | `Esc` | 取消当前命令 | cancel |
 | `F1` | 帮助 | help |
-| `F2` | **全图显示** | zoom fit |
-| `F3` | **布线** | add connect |
+| `F2` | 全图显示 | zoom fit |
+| `F3` | 布线 | add connect |
 | `F4` | 显示属性 | show element |
 | `F5` | 重绘 | redraw |
 | `F6` | 完成 | done |
@@ -48,7 +62,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `F11` | 放大 | zoom in |
 | `F12` | 缩小 | zoom out |
 
-### 2. Ctrl 组合
+### 3. Ctrl 组合
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
@@ -56,18 +70,20 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `Ctrl+↓` | 按格点下移 | ipick_to_gridunit 0 -1 |
 | `Ctrl+←` | 按格点左移 | ipick_to_gridunit -1 |
 | `Ctrl+→` | 按格点右移 | ipick_to_gridunit +1 |
+| `Ctrl+W` | **布线** | add connect |
+| `Ctrl+E` | **铺铜** | shape add |
+| `Ctrl+D` | 删除 | delete |
+| `Ctrl+N` | 新建 | new |
+| `Ctrl+O` | 打开 | open |
+| `Ctrl+B` | 切换推挤模式 | bubset |
+| `Ctrl+Shift+B` | 切换平滑模式 | smoothset |
 | `Ctrl+F2` | 下一个 | next |
 | `Ctrl+F5` | 颜色 | color192 |
 | `Ctrl+F6` | 层优先级 | layer priority |
 | `Ctrl+Shift+F5` | 状态 | status |
-| `Ctrl+B` | 切换推挤模式 | bubset |
-| `Ctrl+D` | 删除 | delete |
-| `Ctrl+N` | 新建 | new |
-| `Ctrl+O` | 打开 | open |
-| `Ctrl+Shift+B` | 切换平滑模式 | smoothset |
 | `Ctrl+Y` | 重做 | redo |
 
-### 3. Shift 组合
+### 4. Shift 组合
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
@@ -84,7 +100,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `Shift+F11` | 上一次视图 | zoom previous |
 | `Shift+F12` | 全图 | zoom world |
 
-### 4. 方向键 / 翻页 / 符号
+### 5. 方向键 / 翻页 / 符号
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
@@ -94,10 +110,12 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | `+` | 切换 subclass（-+）| subclass -+ |
 | `−` | 切换 subclass（--）| subclass -- |
 
-### 5. 字母别名（命令窗口直接输入）
+### 6. 字母别名（命令窗口直接输入）
 
 | 别名 | 功能 |
 | --- | --- |
+| `N` | **打过孔（add via）** |
+| `V` | **选择铜皮/挖空（shape select）** |
 | `x` / `y` | pick 选取 |
 | `window` | 框选缩放 |
 | `zc` | 中心缩放 |
@@ -132,10 +150,14 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 1. **备份**：`copy env env.bak`
 2. 用**记事本**打开 `%HOME%\pcbenv\env`
-3. 在 `### User Preferences section` **之前**追加：
+3. 在 `### User Preferences section` **之前**追加，例如：
    ```
-   alias ~R 'add connect'
-   funckey F2 'move'
+   funckey " " rotate
+   alias ~W    add connect
+   alias ~E    shape add
+   alias N     add via
+   alias V     shape select
+   funckey Delete delete
    ```
 4. 保存，**重启 Allegro**
 5. 在命令窗口输入 `alias` 验证是否加载
@@ -149,6 +171,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 启动异常 | env 语法错误 | 用备份还原，逐行排查 |
 | 中文注释乱码 | env 编码问题 | 注释用**英文**（纯 ASCII）|
 | 快捷键冲突 | 与内置只读项冲突 | 只读项无法覆盖（见第四节）|
+| 空格键无效 | 写法不对 | 必须写成 `funckey " " ...`（引号内一个空格）|
 
 ## 七、关键命令速查（env 用）
 
@@ -158,10 +181,13 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 推挤 | `slide` |
 | 蛇形/等长 | `delay tune` |
 | 过孔 | `add via` |
+| 旋转 | `rotate` |
+| 铺铜 | `shape add` |
+| 选择铜皮 | `shape select` |
+| 删除 | `delete` |
 | 自动布线 | `auto_route` |
 | 自动连接 | `auto_connect` |
-| 铺铜 | `shape add` |
-| 移动/复制/删除 | `move` / `copy` / `delete` |
+| 移动/复制 | `move` / `copy` |
 | 换层 | `layer up` / `layer down` |
 | 差分对设置 | `diff pairs` |
 | Fanout | `create fanout` |
@@ -170,18 +196,17 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 全图 | `zoom fit` |
 | 框选 | `zoom window` |
 
-## 八、与上一版的差异
+## 八、本版重点改动
 
-| 项 | 上一版 | 本版 |
+| 操作 | 旧 | 新 |
 | --- | --- | --- |
-| F2 | move | **zoom fit** |
-| F3 | （Skill）| **add connect** |
-| F4 | net schedule | **show element** |
-| F5~F12 | （部分 Skill）| 全部标准命令 |
-| `Ctrl+N` / `Ctrl+O` | （Skill）| **new / open** |
-| Skill 依赖 | 12 项 | **0 项** |
-| `funckey Up` 笔误 | `-$roamInc1` | 已修正为 `-$roamInc` |
+| 旋转 | 无 | **空格** |
+| 布线 | F3 | **Ctrl+W**（F3 保留）|
+| 铺铜 | 无 | **Ctrl+E** |
+| 过孔 | 无 | **N** |
+| 选择铜皮 | 无 | **V**（shape select）|
+| 删除 | Ctrl+D | **Delete**（Ctrl+D 保留）|
 
 ---
 
-*本文件对应 env 版本：2026-11-25（纯标准命令版，无 Skill 依赖）*
+*本文件对应 env 版本：2026-11-25（纯标准命令版 + 6 项自定义快捷键）*
