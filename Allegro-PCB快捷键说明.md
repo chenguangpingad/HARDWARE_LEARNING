@@ -15,7 +15,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 - `~` 表示 **Ctrl**（如 `~R` = Ctrl+R）
 - 命令含空格时用**单引号**括起
-- 字母键用 `alias`（如 `alias R rotate`）；组合键用 `~` 前缀（如 `~D` = Ctrl+D）
+- 字母键用 `alias`（如 `alias R spin`）；组合键用 `~` 前缀（如 `~D` = Ctrl+D）
 - 修改后**重启 Allegro** 生效
 
 ## 二、文件位置
@@ -35,7 +35,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
-| **R** | **旋转** | rotate |
+| **R** | **旋转** | spin |
 | **Ctrl+W** | **布线** | add connect |
 | **Ctrl+E** | **铺铜** | shape add |
 | **N** | **打过孔** | add via |
@@ -152,7 +152,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 2. 用**记事本**打开 `%HOME%\pcbenv\env`
 3. 在 `### User Preferences section` **之前**追加，例如：
    ```
-   alias R     rotate
+   alias R     spin
    alias ~D    delete
    alias ~W    add connect
    alias ~E    shape add
@@ -172,7 +172,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 启动报 `Parse error ... Variable not defined` | env 里有**未定义变量**（如 `$module`）| 注释掉该行（如 `reopen`/`revert`），或把变量换成固定值 |
 | 中文注释乱码 | env 编码问题 | 注释用**英文**（纯 ASCII）|
 | 快捷键冲突 | 与内置只读项冲突 | 只读项无法覆盖（见第四节）|
-| 空格/Delete 键无效 | 部分键盘布局或版本不认这类键 | 改用字母键：`alias R rotate`、`alias ~D delete` |
+| 空格/Delete 键无效 | 部分键盘布局或版本不认这类键 | 改用字母键：`alias R spin`、`alias ~D delete` |
 
 ## 七、关键命令速查（env 用）
 
@@ -182,7 +182,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 推挤 | `slide` |
 | 蛇形/等长 | `delay tune` |
 | 过孔 | `add via` |
-| 旋转 | `rotate` |
+| 旋转 | `spin` |
 | 铺铜 | `shape add` |
 | 选择铜皮 | `shape select` |
 | 删除 | `delete` |
