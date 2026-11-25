@@ -15,7 +15,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 - `~` 表示 **Ctrl**（如 `~R` = Ctrl+R）
 - 命令含空格时用**单引号**括起
-- **空格键**写成 `funckey " "`（Cadence 官方示例写法）
+- 字母键用 `alias`（如 `alias R rotate`）；组合键用 `~` 前缀（如 `~D` = Ctrl+D）
 - 修改后**重启 Allegro** 生效
 
 ## 二、文件位置
@@ -35,12 +35,12 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 | 键 | 功能 | 命令 |
 | --- | --- | --- |
-| **空格** | **旋转** | rotate |
+| **R** | **旋转** | rotate |
 | **Ctrl+W** | **布线** | add connect |
 | **Ctrl+E** | **铺铜** | shape add |
 | **N** | **打过孔** | add via |
 | **V** | **选择铜皮/挖空** | shape select |
-| **Delete** | **删除** | delete |
+| **Ctrl+D** | **删除** | delete |
 | **F2** | 全图 | zoom fit |
 | **F3** | 布线（备用）| add connect |
 
@@ -152,12 +152,12 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 2. 用**记事本**打开 `%HOME%\pcbenv\env`
 3. 在 `### User Preferences section` **之前**追加，例如：
    ```
-   funckey " " rotate
+   alias R     rotate
+   alias ~D    delete
    alias ~W    add connect
    alias ~E    shape add
    alias N     add via
    alias V     shape select
-   funckey Delete delete
    ```
 4. 保存，**重启 Allegro**
 5. 在命令窗口输入 `alias` 验证是否加载
@@ -172,7 +172,7 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 | 启动报 `Parse error ... Variable not defined` | env 里有**未定义变量**（如 `$module`）| 注释掉该行（如 `reopen`/`revert`），或把变量换成固定值 |
 | 中文注释乱码 | env 编码问题 | 注释用**英文**（纯 ASCII）|
 | 快捷键冲突 | 与内置只读项冲突 | 只读项无法覆盖（见第四节）|
-| 空格键无效 | 写法不对 | 必须写成 `funckey " " ...`（引号内一个空格）|
+| 空格/Delete 键无效 | 部分键盘布局或版本不认这类键 | 改用字母键：`alias R rotate`、`alias ~D delete` |
 
 ## 七、关键命令速查（env 用）
 
@@ -201,12 +201,12 @@ Allegro 的快捷键由 `env` 文件里的两类命令定义：
 
 | 操作 | 旧 | 新 |
 | --- | --- | --- |
-| 旋转 | 无 | **空格** |
+| 旋转 | 无 | **R** |
 | 布线 | F3 | **Ctrl+W**（F3 保留）|
 | 铺铜 | 无 | **Ctrl+E** |
 | 过孔 | 无 | **N** |
 | 选择铜皮 | 无 | **V**（shape select）|
-| 删除 | Ctrl+D | **Delete**（Ctrl+D 保留）|
+| 删除 | Delete | **Ctrl+D** |
 
 ---
 
